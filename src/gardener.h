@@ -1,5 +1,11 @@
+/*******************************************************************************
+ *    INCLUDED FILES
+ ******************************************************************************/
 #include <stddef.h>
 
+/*******************************************************************************
+ *    DATA STRUCTURES
+ ******************************************************************************/
 enum jobs { Sowing, Cutting, Watering };
 
 struct gardener {
@@ -9,6 +15,14 @@ struct gardener {
   enum jobs task;
 };
 
+/*******************************************************************************
+ *    PUBLIC API
+ ******************************************************************************/
 struct gardener *create_gardeners(size_t amount);
-struct gardener *cut(size_t gardeners_no,
-                     struct gardener gardeners[gardeners_no]);
+struct gardener *cut_many(size_t gardeners_no,
+                          struct gardener gardeners[gardeners_no]);
+
+/*******************************************************************************
+ *    PRIVATE API
+ ******************************************************************************/
+static void cut(struct gardener gardener_);
