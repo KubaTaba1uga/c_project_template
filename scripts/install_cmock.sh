@@ -1,4 +1,8 @@
+#!/bin/bash
+
+export CMOCK_DIR=../cmock
+
 // Install cmock and unity
-git clone --recursive https://github.com/throwtheswitch/cmock.git
-cd cmock
-bundle3.1 install
+git clone --recursive https://github.com/throwtheswitch/cmock.git $CMOCK_DIR
+cd $CMOCK_DIR
+bundle install
