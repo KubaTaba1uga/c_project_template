@@ -36,6 +36,6 @@ test: setup
 
 -include ${TEST_MAKEFILE}
 
-test_summary:
+test_summary: 
 	cat ${TEST_BUILD_DIR}/*.testresult
 
