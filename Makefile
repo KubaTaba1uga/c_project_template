@@ -1,10 +1,11 @@
 CC ?= gcc
+
 export BUILD_DIR ?= ./build
 export SRC_DIR ?= ./src
 export TEST_DIR ?= ./test
 export TEST_BUILD_DIR ?= ${BUILD_DIR}/test
 export CMOCK_DIR ?= ./cmock
-export UNITY_DIR ?= ./cmock/vendors/unity
+export UNITY_DIR ?= ./cmock/vendor/unity
 TEST_MAKEFILE = ${TEST_BUILD_DIR}/MakefileTestSupport
 OBJ ?= ${BUILD_DIR}/obj
 OBJ_DIR = ${OBJ}
@@ -28,5 +29,7 @@ run:
 	./build/main || true
 
 test: setup
+
+
 
 -include ${TEST_MAKEFILE}

@@ -1,6 +1,9 @@
 #!/bin/bash
 
-export CMOCK_DIR=../cmock
+CMOCK_VER=2.5.3
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+export CMOCK_DIR=$SCRIPT_DIR/../cmock
 
 if ! type "git" > /dev/null; then
     echo "Git is required to install cmock"
@@ -19,6 +22,6 @@ if ! type "bundle" > /dev/null; then
 fi
 
 # Install cmock and unity locally
-git clone --recursive https://github.com/throwtheswitch/cmock.git $CMOCK_DIR
+git clone -b v$CMOCK_VER --recursive https://github.com/throwtheswitch/cmock.git $CMOCK_DIR
 cd $CMOCK_DIR
 bundle install
