@@ -193,3 +193,5 @@ dkms.conf
 
 # Formatting standards
 .clang-format
+
+cmock
