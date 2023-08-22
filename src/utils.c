@@ -1,3 +1,5 @@
+#include <stddef.h>
+#include <stdlib.h>
 #include <time.h>
 
 unsigned long get_current_time(void) {
@@ -10,3 +12,5 @@ unsigned long get_current_time(void) {
 
   return (unsigned long)now;
 }
+
+void *my_malloc(size_t size) { return malloc(size); }
