@@ -41,6 +41,6 @@ int water_plant(plant *plant_);
 /*******************************************************************************
  *    PRIVATE API
  ******************************************************************************/
-bool is_watering_required(plant *plant_, unsigned long time);
+static bool is_watering_required(plant *plant_, unsigned long time);
 
 #endif

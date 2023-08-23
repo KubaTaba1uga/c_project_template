@@ -42,3 +42,9 @@ test_summary:
 
 # required by gdb
 TEST_CFLAGS += -g
+
+# required to test static functions
+LDFLAGS += -zmuldefs
+
+memory_test: ${GARDENER_TEST}
+	  valgrind --leak-check=yes ${GARDENER_TEST}
