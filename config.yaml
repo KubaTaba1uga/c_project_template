@@ -3,4 +3,5 @@
   :plugins: [expect]
   :includes: []
   :mock_prefix: mock_
+  :mock_path: ./build/test/mocks
   :treat_inlines: :include

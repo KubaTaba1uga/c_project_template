@@ -4,7 +4,6 @@ CMOCK_DIR = File.expand_path(ENV.fetch('CMOCK_DIR', File.join(ABS_ROOT, '..', '.
 require "#{CMOCK_DIR}/lib/cmock"
 UNITY_DIR = File.join(CMOCK_DIR, 'vendor', 'unity')
 require "#{UNITY_DIR}/auto/generate_test_runner"
-CMOCK_CONFIG =  ENV.fetch('CMOCK_CONFIG',  './config.yaml')
 
 SRC_DIR =  ENV.fetch('SRC_DIR',  './src')
 TEST_DIR = ENV.fetch('TEST_DIR', './test')
@@ -44,7 +43,6 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
   mkfile.puts 'TEST_MAKEFILE = ${TEST_BUILD_DIR}/MakefileTestSupport'
   mkfile.puts 'OBJ ?= ${BUILD_DIR}/obj'
   mkfile.puts 'OBJ_DIR = ${OBJ}'
-  mkfile.puts "CMOCK_CONFIG ?= #{CMOCK_CONFIG}"
   mkfile.puts ''
 
   # Build Unity
@@ -184,7 +182,7 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
     mock_obj = File.join(MOCKS_DIR, mock_name + '.o')
 
     mkfile.puts "#{mock_src}: #{hdr}"
-    mkfile.puts "\t@CMOCK_DIR=${CMOCK_DIR} ruby -o${CMOCK_CONFIG} ${CMOCK_DIR}/scripts/create_mock.rb #{hdr}"
+    mkfile.puts "\t@CMOCK_DIR=${CMOCK_DIR} ruby #{ABS_ROOT}/scripts/create_mock.rb #{hdr}"
     mkfile.puts ''
 
     mkfile.puts "#{mock_obj}: #{mock_src} #{mock_header}"
