@@ -12,7 +12,7 @@ TEST_MAKEFILE = ${TEST_BUILD_DIR}/MakefileTestSupport
 OBJ ?= ${BUILD_DIR}/obj
 OBJ_DIR = ${OBJ}
 
-GARDENER_TEST = ${TEST_BUILD_DIR}/test_gardener
+TEST_UNIT_PATH = ${TEST_BUILD_DIR}/"$(TEST_UNIT)"
 
 
 default: all
@@ -47,10 +47,10 @@ TEST_CFLAGS += -g
 LDFLAGS += -zmuldefs
 
 memory_test: test_summary
-	  valgrind --tool=memcheck --track-origins=yes ${GARDENER_TEST}
+	  valgrind --tool=memcheck --track-origins=yes ${TEST_UNIT_PATH}
 
 debug_test: test_summary
-	  gdb ${GARDENER_TEST}
+	  gdb ${TEST_UNIT_PATH}
 
 
 .PHONY: memory_test
