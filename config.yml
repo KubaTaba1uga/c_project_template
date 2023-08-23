@@ -1,0 +1,6 @@
+---
+:cmock:
+  :plugins: [expect]
+  :includes: []
+  :mock_prefix: mock_
+  :treat_inlines: :include

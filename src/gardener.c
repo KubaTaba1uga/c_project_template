@@ -17,7 +17,7 @@ plant *create_plant(char *species, float water_amount, unsigned long start_date,
                     unsigned long last_watering_date,
                     unsigned long watering_period) {
 
-  plant *p = malloc(sizeof(plant));
+  plant *p = my_malloc(sizeof(plant));
   if (!p)
     return NULL;
 

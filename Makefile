@@ -6,6 +6,7 @@ export TEST_DIR ?= ./test
 export TEST_BUILD_DIR ?= ${BUILD_DIR}/test
 export CMOCK_DIR ?= ./cmock
 export UNITY_DIR ?= ./cmock/vendor/unity
+export CMOCK_CONFIG=./config.yaml
 
 TEST_MAKEFILE = ${TEST_BUILD_DIR}/MakefileTestSupport
 OBJ ?= ${BUILD_DIR}/obj
@@ -26,7 +27,7 @@ setup:
 clean:
 	rm -rf ${BUILD_DIR}
 
-${BUILD_DIR}/main: # ${SRC_DIR}/gardener.c ${SRC_DIR}/gardener.h ${SRC_DIR}/utils.c ${SRC_DIR}/utils.h
+${BUILD_DIR}/main: ${SRC_DIR}/gardener.c ${SRC_DIR}/gardener.h ${SRC_DIR}/utils.c ${SRC_DIR}/utils.h
 	${CC} $< -o $@
 
 run:
@@ -39,3 +40,5 @@ test: setup
 test_summary: 
 	cat ${TEST_BUILD_DIR}/*.testresult
 
+# required by gdb
+TEST_CFLAGS += -g
