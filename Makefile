@@ -6,7 +6,7 @@ export TEST_DIR ?= ./test
 export TEST_BUILD_DIR ?= ${BUILD_DIR}/test
 export CMOCK_DIR ?= ./cmock
 export UNITY_DIR ?= ./cmock/vendor/unity
-export CMOCK_CONFIG=./config.yaml
+export CMOCK_CONFIG=./cmock_config.yaml
 
 TEST_MAKEFILE = ${TEST_BUILD_DIR}/MakefileTestSupport
 OBJ ?= ${BUILD_DIR}/obj
