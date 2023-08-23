@@ -25,6 +25,7 @@ plant *create_plant(char *species, float water_amount, unsigned long start_date,
   p->water_amount = water_amount;
   p->last_watering_date = last_watering_date;
   p->watering_period = watering_period;
+  p->start_date = start_date;
 
   return p;
 }

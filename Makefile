@@ -33,7 +33,7 @@ ${BUILD_DIR}/main: ${SRC_DIR}/gardener.c ${SRC_DIR}/gardener.h ${SRC_DIR}/utils.
 run:
 	./build/main || true
 
-test: setup
+# test: setup
 
 -include ${TEST_MAKEFILE}
 
@@ -46,5 +46,11 @@ TEST_CFLAGS += -g
 # required to test static functions
 LDFLAGS += -zmuldefs
 
-memory_test: ${GARDENER_TEST}
-	  valgrind --leak-check=yes ${GARDENER_TEST}
+memory_test: test_summary
+	  valgrind --tool=memcheck --track-origins=yes ${GARDENER_TEST}
+
+debug_test: test_summary
+	  gdb ${GARDENER_TEST}
+
+
+.PHONY: memory_test
