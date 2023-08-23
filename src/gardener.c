@@ -33,8 +33,6 @@ int water_plant(plant *plant_) {
   // On success return 0
 
   unsigned long now = get_current_time();
-  if (now == 0)
-    return 1;
 
   if (!is_watering_required(plant_, now))
     return 0;

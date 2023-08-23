@@ -36,7 +36,7 @@ typedef struct {
 plant *create_plant(char *species, float water_amount, unsigned long start_date,
                     unsigned long last_watering_date,
                     unsigned long watering_period);
-void water(plant *plant_);
+int water_plant(plant *plant_);
 
 /*******************************************************************************
  *    PRIVATE API

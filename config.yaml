@@ -1,6 +1,6 @@
 ---
 :cmock:
-  :plugins: [expect]
+  :plugins: [expect, ignore]
   :includes: []
   :mock_prefix: mock_
   :mock_path: ./build/test/mocks
