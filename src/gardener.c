@@ -30,17 +30,17 @@ plant *create_plant(char *species, float water_amount, unsigned long start_date,
   return p;
 }
 
-int water_plant(plant *plant_) {
-  // On success return 0
+bool water_plant(plant *plant_) {
+  // If watering done return `true`, otherwise `false`.
 
   unsigned long now = get_current_time();
 
   if (!is_watering_required(plant_, now))
-    return 0;
+    return false;
 
   plant_->last_watering_date = now;
 
-  return 0;
+  return true;
 }
 
 /*******************************************************************************
@@ -55,5 +55,5 @@ bool is_watering_required(plant *plant_, unsigned long time) {
       new_watering_period < plant_->watering_period)
     exit(1);
 
-  return time >= new_watering_period;
+  return time > new_watering_period;
 }
