@@ -37,20 +37,22 @@ run:
 
 -include ${TEST_MAKEFILE}
 
-test_summary: 
-	cat ${TEST_BUILD_DIR}/*.testresult
-
 # required by gdb
 TEST_CFLAGS += -g
 
 # required to test static functions
 LDFLAGS += -zmuldefs
 
+test_summary: 
+	cat ${TEST_BUILD_DIR}/*.testresult
+
+
 memory_test: test_summary
-	  valgrind --tool=memcheck --track-origins=yes ${TEST_UNIT_PATH}
+	  valgrind -s --tool=memcheck --track-origins=yes ${TEST_UNIT_PATH}
 
 debug_test: test_summary
 	  gdb ${TEST_UNIT_PATH}
 
 
 .PHONY: memory_test
+.PHONY: debug_test
