@@ -2,6 +2,7 @@
  *    INCLUDED FILES
  ******************************************************************************/
 // Standard library
+#include <limits.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
@@ -12,7 +13,7 @@
 // App
 /* *.c instead of *.h is used to test static functions. */
 #include "gardener.c"
-#include "mock_utils.h"
+#include "mock_std_lib_utils.h"
 
 /*******************************************************************************
  *    DATA
@@ -21,7 +22,7 @@ char species[] = "Renanthera monachica";
 float water_amount = 0.2;
 unsigned long watering_period = 86400, start_date = 0, last_watering_date = 0;
 
-plant *p;
+plant *p = NULL;
 size_t plant_size = sizeof(plant);
 
 /*******************************************************************************
@@ -35,7 +36,7 @@ void setUp(void) {
   if (!memory_mock)
     TEST_FAIL_MESSAGE("Unable to allocate memory. Mocking malloc failed!");
 
-  my_malloc_ExpectAndReturn(plant_size, memory_mock);
+  app_malloc_ExpectAndReturn(plant_size, memory_mock);
 
   p = create_plant(species, water_amount, start_date, last_watering_date,
                    watering_period);
@@ -64,7 +65,7 @@ void test_create_plant_success(void) {
 void test_create_plant_failure(void) {
   plant *p;
 
-  my_malloc_IgnoreAndReturn(NULL);
+  app_malloc_IgnoreAndReturn(NULL);
 
   p = create_plant(species, water_amount, start_date, last_watering_date,
                    watering_period);
@@ -76,8 +77,6 @@ void test_water_plant(void) {
   bool received;
   unsigned long now_mock = last_watering_date + watering_period;
 
-  //
-  /* Test case #0 */
   get_current_time_IgnoreAndReturn(now_mock + 1);
 
   received = water_plant(p);
@@ -110,4 +109,14 @@ void test_is_watering_required_true_false(void) {
   received = is_watering_required(p, now_mock + 1);
 
   TEST_ASSERT_TRUE(received);
+}
+
+void test_is_watering_required_overflow(void) {
+  bool received;
+
+  p->watering_period = ULONG_MAX;
+  p->last_watering_date = 1;
+
+  app_exit_IgnoreAndReturn(2);
+  is_watering_required(p, 0);
 }

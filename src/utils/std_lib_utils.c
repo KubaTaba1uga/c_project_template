@@ -1,6 +1,4 @@
-#include <stddef.h>
-#include <stdlib.h>
-#include <time.h>
+#include "std_lib_utils.h"
 
 unsigned long get_current_time(void) {
   // Return number of seconds since Epoch.
@@ -13,4 +11,12 @@ unsigned long get_current_time(void) {
   return (unsigned long)now;
 }
 
-void *my_malloc(size_t size) { return malloc(size); }
+void *app_malloc(size_t size) {
+  // Interface to malloc
+  return malloc(size);
+}
+
+int app_exit(int exit_code) {
+  // Interface to exit
+  exit(exit_code);
+}

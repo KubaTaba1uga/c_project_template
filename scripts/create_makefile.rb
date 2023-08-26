@@ -148,6 +148,8 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
       headers_to_mock << header_to_mock
     end
 
+    
+    
     all_headers_to_mock += headers_to_mock
     mock_objs = headers_to_mock.map do |hdr|
       mock_name = MOCK_PREFIX + File.basename(hdr, '.*')
@@ -155,6 +157,21 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
     end
     all_headers_to_mock.uniq!
 
+    # TO-DO
+    # Link to not mocked objs when mock is missing
+    #  1. create mock.o name
+    #  2. if mock is not exsisting
+    #  3. append orig.o
+    
+    local = cfg[:includes][:local].select { |name| name !~ MOCK_MATCHER }
+    # local_objs = local.map do |hdr|
+    #   mock_name = File.basename(hdr, '.*')      
+    #   File.join(MOCKS_DIR, mock_name + '.o')
+    # end
+    # print "******************************"
+    # print local_objs
+    
+    
     # Build test suite
     mkfile.puts "#{test_obj}: #{test} #{module_obj} #{mock_objs.join(' ')}"
     mkfile.puts "\t${CC} -o $@ -c $< ${TEST_CFLAGS} -I #{SRC_DIR} -I #{UNITY_SRC} -I #{CMOCK_SRC} -I #{MOCKS_DIR} ${INCLUDE_PATH}"

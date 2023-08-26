@@ -13,6 +13,7 @@ OBJ ?= ${BUILD_DIR}/obj
 OBJ_DIR = ${OBJ}
 
 TEST_UNIT_PATH = ${TEST_BUILD_DIR}/$(TEST_UNIT)
+UTILS_DIR = ${SRC_DIR}/utils
 
 default: all
 
@@ -26,7 +27,7 @@ setup:
 clean:
 	rm -rf ${BUILD_DIR}
 
-${BUILD_DIR}/main: ${SRC_DIR}/main.c ${SRC_DIR}/gardener.h ${SRC_DIR}/gardener.c ${SRC_DIR}/utils.h ${SRC_DIR}/utils.c
+${BUILD_DIR}/main: ${SRC_DIR}/main.c ${SRC_DIR}/gardener.h ${SRC_DIR}/gardener.c ${UTILS_DIR}/std_lib_utils.h  ${UTILS_DIR}/std_lib_utils.c
 	${CC} $^ -o $@
 
 run: ${BUILD_DIR}/main

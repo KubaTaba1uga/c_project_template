@@ -3,6 +3,7 @@
 /*******************************************************************************
  *    INCLUDED FILES
  ******************************************************************************/
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,7 +17,7 @@ plant *create_plant(char *species, float water_amount, unsigned long start_date,
                     unsigned long last_watering_date,
                     unsigned long watering_period) {
 
-  plant *p = my_malloc(sizeof(plant));
+  plant *p = app_malloc(sizeof(plant));
   if (!p)
     return NULL;
 
@@ -46,13 +47,13 @@ bool water_plant(plant *plant_) {
  *    PRIVATE API
  ******************************************************************************/
 bool is_watering_required(plant *plant_, unsigned long time) {
+  // Detect overflow
+  if (plant_->last_watering_date > (ULONG_MAX - plant_->watering_period) ||
+      (plant_->watering_period > (ULONG_MAX - plant_->last_watering_date)))
+    app_exit(2);
+
   unsigned long new_watering_period =
       plant_->last_watering_date + plant_->watering_period;
-
-  // Detect overflow
-  if (new_watering_period < plant_->last_watering_date ||
-      new_watering_period < plant_->watering_period)
-    exit(1);
 
   return time > new_watering_period;
 }

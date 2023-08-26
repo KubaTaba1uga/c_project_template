@@ -1,21 +1,37 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "gardener.h"
 
+plant plants[] = {{.species = "Renanthera monachica",
+                   .water_amount = 0.2,
+                   .watering_period = 86400,
+                   .start_date = 123,
+                   .last_watering_date = 246},
+                  {.species = "Arachnis annamensis",
+                   .water_amount = 0.15,
+                   .watering_period = 43200,
+                   .start_date = 246,
+                   .last_watering_date = 10000}};
+
 int main(void) {
-  char species[] = "Renanthera monachica";
-  float water_amount = 0.2;
-  unsigned long watering_period = 86400, start_date = 0, last_watering_date = 0;
+  size_t i, plants_amount = sizeof(plants) / sizeof(plant);
+  bool was_watered;
 
-  plant *p = create_plant(species, water_amount, start_date, last_watering_date,
-                          watering_period);
-  if (!p)
-    return 1;
+  while (true) {
+    for (i = 0; i < plants_amount; i++) {
+      was_watered = water_plant(&plants[i]);
 
-  printf("Plant species: %s\n", p->species);
+      if (was_watered)
+        printf("%s was watered.\n", plants[i].species);
+      else
+        printf("%s was watered.\n", plants[i].species);
+    }
 
-  free(p);
+    sleep(3);
+  }
 
   return 0;
 }
