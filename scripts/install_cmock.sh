@@ -18,7 +18,12 @@ fi
 
 if ! type "bundle" > /dev/null; then
     echo "Bundler is required to install cmock"
-    exit 2
+    exit 3
+fi
+
+# If cmock directory exist return success
+if ! test -f "$CMOCK_DIR"; then
+    exit 0
 fi
 
 # Install cmock and unity locally

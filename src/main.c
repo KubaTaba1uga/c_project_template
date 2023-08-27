@@ -15,7 +15,7 @@ plant plants[] = {{.species = "Renanthera monachica",
                    .water_amount = 0.15,
                    .watering_period = 43200,
                    .start_date = 246,
-                   .last_watering_date = 10000}};
+                   .last_watering_date = 86400}};
 #ifdef TEST
 int main__(void)
 #else
@@ -32,7 +32,7 @@ int main(void)
       if (was_watered)
         printf("%s was watered.\n", plants[i].species);
       else
-        printf("%s was watered.\n", plants[i].species);
+        printf("%s wasn't watered.\n", plants[i].species);
     }
 
     sleep(3);
