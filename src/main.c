@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "gardener.h"
+/* #include "main.h" */
 
 plant plants[] = {{.species = "Renanthera monachica",
                    .water_amount = 0.2,
@@ -15,8 +16,12 @@ plant plants[] = {{.species = "Renanthera monachica",
                    .watering_period = 43200,
                    .start_date = 246,
                    .last_watering_date = 10000}};
-
-int main(void) {
+#ifdef TEST
+int main__(void)
+#else
+int main(void)
+#endif
+{
   size_t i, plants_amount = sizeof(plants) / sizeof(plant);
   bool was_watered;
 

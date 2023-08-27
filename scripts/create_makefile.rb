@@ -104,7 +104,7 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
     linkonly = cfg[:includes][:linkonly]
     linkonly_objs = []
     linkonly.each do |linkonlyfile|
-      linkonlybase = File.basename(linkonlyfile, '.*')
+     linkonlybase = File.basename(linkonlyfile, '.*')
       linkonlymodule_src = File.join(SRC_DIR, linkonlyfile.to_s)
       linkonlymodule_obj = File.join(OBJ_DIR, "#{linkonlybase}.o")
       linkonly_objs.push(linkonlymodule_obj)
@@ -159,18 +159,71 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
 
     # TO-DO
     # Link to not mocked objs when mock is missing
-    #  1. create mock.o name
-    #  2. if mock is not exsisting
-    #  3. append orig.o
+    #  1. if no mock corresponding to module
+    #  1.1 list all header files in src/*
+    #  1.2 for each src header file
+    #  1.2.1 if header == src header, add file.o to included
+
+
     
-    local = cfg[:includes][:local].select { |name| name !~ MOCK_MATCHER }
+    
+    # local = cfg[:includes][:local].select { |name| name !~ MOCK_MATCHER }
+    # local_objs = []
+    
+    # print "\n******************************\n"
+    # for local_module in local do
+    #   is_module_mocked = false
+
+    #   for mocked_module in local_mocks do
+    #     mocked_module = mocked_module.sub(/#{MOCK_PREFIX}/, '').to_s
+
+    #     if local_module == mocked_module
+    #       is_module_mocked = true
+    #       break
+    #     end
+    #   end
+
+    #   if is_module_mocked
+    #     next
+    #   end
+
+    #   src_local_module = File.join(SRC_DIR, local_module)      
+
+    #   if not File.exist?(src_local_module)
+    #     next
+    #   end
+
+    #   local_module = File.basename(src_local_module).sub(".h", ".o")
+
+    #   obj_local_module = File.join(OBJ_DIR, local_module)      
+      
+    #   local_objs.push(obj_local_module)
+
+    #   mkfile.puts "#{obj_local_module}: #{src_local_module}"
+    #   mkfile.puts "\t${CC} -o $@ -c $< ${TEST_CFLAGS} -I ${SRC_DIR} ${INCLUDE_PATH}"
+    #   mkfile.puts ''
+      
+    #   print module_name
+    #   print "  "
+    #   print is_module_mocked
+    #   print "\n"
+
+    # end
+    # print "\n******************************\n"
+
+
+
+    
+    
     # local_objs = local.map do |hdr|
     #   mock_name = File.basename(hdr, '.*')      
     #   File.join(MOCKS_DIR, mock_name + '.o')
     # end
     # print "******************************"
-    # print local_objs
-    
+    # print local
+    # print "    "
+    # print local_mocks
+    # print "\n"    
     
     # Build test suite
     mkfile.puts "#{test_obj}: #{test} #{module_obj} #{mock_objs.join(' ')}"
