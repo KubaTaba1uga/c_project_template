@@ -156,6 +156,22 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
       File.join(MOCKS_DIR, mock_name + '.o')
     end
     all_headers_to_mock.uniq!
+
+    print "\nmock_objs: "
+    print mock_objs
+    print "\n"
+    print "\nmodule_obj: "
+    print module_obj
+    print "\n"
+    print "\ntest_obj: "
+    print test_obj
+    print "\n"
+    print "\ntest: "
+    print test
+    print "\n"
+    
+    
+
     
     # Build test suite
     mkfile.puts "#{test_obj}: #{test} #{module_obj} #{mock_objs.join(' ')}"
@@ -185,6 +201,8 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
 
     print "********************************"
     print hdr
+    print mock_header
+    
     print "********************************"
     mkfile.puts "#{mock_src}: #{hdr}"
     mkfile.puts "\t@CMOCK_DIR=${CMOCK_DIR} ruby #{ABS_ROOT}/scripts/create_mock.rb #{hdr}"
