@@ -104,9 +104,11 @@ production = production_conf.Finish()
 test = Environment(CPPPATH=include_dirs)
 test_conf = Configure(test)
 test.VariantDir(TEST_OBJ_DIR, SRC_DIR, duplicate=0)
-test["UNITY_DIR"] = UNITY_DIR
-test["CMOCK_DIR"] = CMOCK_DIR
-test["CCFLAGS"] += " -DTEST "
+test.Append(UNITY_DIR=UNITY_DIR)
+test.Append(CMOCK_DIR=CMOCK_DIR)
+test.Append(CCFLAGS=" -DTEST ")
+test.Append(LINKFLAGS=" -zmuldefs ")
+
 all_objs = []
 if not os.path.exists(CMOCK_DIR):
     download_cmock()
@@ -228,11 +230,18 @@ for test_source in test_files:
         for include in test_includes
         if include.startswith("mock_")
     ]
+    src_files_local = [
+        os.path.join(TEST_OBJ_DIR, include.replace(".h", ".o").replace(".c", ".o"))
+        for include in test_includes
+        if any(src_file.endswith(include) for src_file in src_files)
+    ]
 
     # Build test executable
     test_objs = [test_obj, runner_obj, unity, cmock]
     if mocked_files:
         test_objs.extend(mocked_files)
+    if src_files_local:
+        test_objs.extend(src_files_local)
 
     all_objs.append(test.Program(test_bin, test_objs))
 
@@ -240,6 +249,7 @@ for test_source in test_files:
     # headers_to_link = set()
 
     # for include in test_includes:
+print(test.Dump())
 
 
 test_conf.Finish()
