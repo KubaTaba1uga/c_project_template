@@ -127,33 +127,17 @@ all_objs.append(
 )
 
 # Prepare to build test
-all_headers_to_mock, all_src_headers = set(), set()
+test_files = [filename for filename in glob(f"{TEST_DIR}/**/test_*.c", recursive=True)]
+src_files = list(glob(f"{SRC_DIR}/**/*.c", recursive=True)) + list(
+    glob(f"{SRC_DIR}/**/*.h", recursive=True)
+)
 
-test_sources = [
-    filename for filename in glob(f"{TEST_DIR}/**/test_*.c", recursive=True)
-]
-
-for test_source in test_sources:
+# Build test suits
+for test_source in test_files:
     module_name, _ = os.path.splitext(os.path.basename(test_source))
     test_obj = os.path.join(TEST_OBJ_DIR, f"test_{module_name}.o")
     runner_source = os.path.join(TEST_RUNNERS_DIR, f"runner_{module_name}.c")
     runner_obj = os.path.join(TEST_OBJ_DIR, f"runner_{module_name}.o")
-
-    test_includes = find_includes(test_source)
-
-    all_headers_to_mock.update(
-        mocked_includes := [
-            include for include in test_includes if include.startswith("mock_")
-        ]
-    )
-
-    all_src_headers.update(
-        src_includes := [
-            include
-            for include in test_includes
-            if os.path.exists(os.path.join(SRC_DIR, include))
-        ]
-    )
 
     # Create runners
     all_objs.append(
@@ -168,16 +152,44 @@ for test_source in test_sources:
     )
 
     # Build runners
-    all_objs.append(
-        runner_obj := test.Object(
-            runner_obj,
-            runner_source,
-            CPPPATH=[UNITY_SRC, CMOCK_SRC, TEST_MOCKS_DIR],
-        )
-    )
+    # all_objs.append(
+    #     runner_obj := test.Object(
+    #         runner_obj,
+    #         runner_source,
+    #         CPPPATH=[UNITY_SRC, CMOCK_SRC, TEST_MOCKS_DIR],
+    #     )
+    # )
 
-    # Build test suite
-    mock_objs = [os.path.join(TEST_MOCKS_DIR, include) for include in mocked_includes]
+files_to_mock = set()
+# Build mocks
+for test_file in test_files:
+    test_includes = find_includes(test_file)
+
+    # Find corresponding src file
+
+    from pprint import pprint
+
+    print()
+    pprint(test_includes)
+    pprint(src_files)
+    print()
+
+    # all_headers_to_mock.update(
+    #     mocked_includes := [
+    #         include for include in test_includes if include.startswith("mock_")
+    #     ]
+    # )
+
+    # all_src_headers.update(
+    #     src_includes := [
+    #         include
+    #         for include in test_includes
+    #         if os.path.exists(os.path.join(SRC_DIR, include))
+    #     ]
+    # )
+
+    # # Build test suite
+    # mock_objs = [os.path.join(TEST_MOCKS_DIR, include) for include in mocked_includes]
     # all_objs.append(
     #     test_suite_obj := test.Object(
     #         test_obj,
@@ -185,15 +197,15 @@ for test_source in test_sources:
     #     )
     # )
 
-    from pprint import pprint
+    # from pprint import pprint
 
-    print()
-    pprint(mocked_includes)
-    pprint(src_includes)
-    print()
+    # print()
+    # pprint(mocked_includes)
+    # pprint(src_includes)
+    # print()
 
 # Generate and build mocks
-for mock_header in all_headers_to_mock:
+for mock_header in files_to_mock:
     mock_src = os.path.join(TEST_MOCKS_DIR, mock_header.replace(".h", ".c"))
     mock_obj = os.path.join(TEST_OBJ_DIR, mock_header.replace(".h", ".o"))
 # production.VariantDir(TEST_OBJ_DIR, SRC_DIR, duplicate=0)

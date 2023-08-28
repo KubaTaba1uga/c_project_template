@@ -183,6 +183,9 @@ File.open(TEST_MAKEFILE, 'w') do |mkfile|
     mock_src = File.join(MOCKS_DIR, mock_name + '.c')
     mock_obj = File.join(MOCKS_DIR, mock_name + '.o')
 
+    print "********************************"
+    print hdr
+    print "********************************"
     mkfile.puts "#{mock_src}: #{hdr}"
     mkfile.puts "\t@CMOCK_DIR=${CMOCK_DIR} ruby #{ABS_ROOT}/scripts/create_mock.rb #{hdr}"
     mkfile.puts ''
