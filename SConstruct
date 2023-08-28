@@ -230,18 +230,32 @@ for test_source in test_files:
         for include in test_includes
         if include.startswith("mock_")
     ]
+
     src_files_local = [
-        os.path.join(TEST_OBJ_DIR, include.replace(".h", ".o").replace(".c", ".o"))
+        include
         for include in test_includes
         if any(src_file.endswith(include) for src_file in src_files)
     ]
+    src_files_objs = []
+    for include in test_includes:
+        include = include.replace(".h", ".c")
+        if any(src_file.endswith(include) for src_file in src_files):
+            include_source = os.path.join(SRC_DIR, include)
+            include_obj = os.path.join(TEST_OBJ_DIR, include.replace(".c", ".o"))
+            src_files_objs.extend(test.Object(include_obj, include_source))
+
+    # module_obj := test.Object(os.path.join())
+    print(f"{src_files_objs=}")
 
     # Build test executable
     test_objs = [test_obj, runner_obj, unity, cmock]
     if mocked_files:
         test_objs.extend(mocked_files)
-    if src_files_local:
-        test_objs.extend(src_files_local)
+    if src_files_objs:
+        test_objs.extend(src_files_objs)
+    test_objs = Flatten(test_objs)
+
+    print(test_objs)
 
     all_objs.append(test.Program(test_bin, test_objs))
 
@@ -249,7 +263,7 @@ for test_source in test_files:
     # headers_to_link = set()
 
     # for include in test_includes:
-print(test.Dump())
+# print(test.Dump())
 
 
 test_conf.Finish()
