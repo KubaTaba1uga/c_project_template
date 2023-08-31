@@ -6,7 +6,7 @@
 #include "gardener.h"
 /* #include "main.h" */
 
-plant plants[] = {{.species = "Renanthera monachica",
+plant my_plants_[] = {{.species = "Renanthera monachica",
                    .water_amount = 0.2,
                    .watering_period = 86400,
                    .start_date = 123,
@@ -17,22 +17,22 @@ plant plants[] = {{.species = "Renanthera monachica",
                    .start_date = 246,
                    .last_watering_date = 86400}};
 #ifdef TEST
-int __main__(void)
+int main__(void)
 #else
 int main(void)
 #endif
 {
-  size_t i, plants_amount = sizeof(plants) / sizeof(plant);
+  size_t i, plants_amount = sizeof(my_plants_) / sizeof(plant);
   bool was_watered;
 
   while (true) {
     for (i = 0; i < plants_amount; i++) {
-      was_watered = water_plant(&plants[i]);
+      was_watered = water_plant(&my_plants_[i]);
 
       if (was_watered)
-        printf("%s was watered.\n", plants[i].species);
+        printf("%s was watered.\n", my_plants_[i].species);
       else
-        printf("%s wasn't watered.\n", plants[i].species);
+        printf("%s wasn't watered.\n", my_plants_[i].species);
     }
 
     sleep(3);

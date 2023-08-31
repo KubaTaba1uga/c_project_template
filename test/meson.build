@@ -17,25 +17,11 @@ cmock_gen_mock = generator(
    arguments: ['@INPUT@', '@BUILD_DIR@'],
 )
 
-root = '..'
-src = root / 'src'
-
-test_cmock_name = 'test_cmock.c'
-
-cmock_test_src = files([
-  test_cmock_name
-])
-
-test_cmock_exe = executable('test_cmock',
-  sources: [
-   cmock_test_src,
-   cmock_gen_runner.process(test_cmock_name)                   
-  ],
-  dependencies: [ unity_dependency ],
-)
+root = join_paths('..', root)
 
 subdir('test_gardener.d')
-
+subdir('test_cmock.d')
+subdir('test_main.d')
 
 #gen_mock = generator(
 #  find_program('../subprojects/cmock/scripts/create_mock.rb'),
