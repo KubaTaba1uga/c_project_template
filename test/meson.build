@@ -17,10 +17,10 @@ cmock_gen_mock = generator(
    arguments: ['@INPUT@', '@BUILD_DIR@'],
 )
 
-src='../src'
-include = [src]
+root = '..'
+src = root / 'src'
+
 test_cmock_name = 'test_cmock.c'
-test_gardener_name = 'test_gardener.c'
 
 cmock_test_src = files([
   test_cmock_name
@@ -34,20 +34,7 @@ test_cmock_exe = executable('test_cmock',
   dependencies: [ unity_dependency ],
 )
 
-
-
-test_gardener_src = files(['../src/gardener.h','../src/gardener.c',    test_gardener_name])
-
-test_gardener_exe = executable('test_gardener',
-  sources: [
-   test_gardener_src,
-   cmock_gen_runner.process(test_gardener_name),
-   cmock_gen_mock.process('../src/utils/std_lib_utils.h')        
-  ],
-  include_directories: [src, src/'utils'],
-  dependencies: [ unity_dependency, cmock_dependency ],
-)
-
+subdir('test_gardener.d')
 
 
 #gen_mock = generator(
