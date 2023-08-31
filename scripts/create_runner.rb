@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+
 if $0 == __FILE__
 
   # make sure there is at least one parameter left (the input file)
