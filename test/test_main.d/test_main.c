@@ -11,7 +11,7 @@ void tearDown(void) {
 
 void test_main_(void) {
   main__();
-  TEST_PASS_MESSAGE("cmock is working.\n");
+  TEST_PASS_MESSAGE("main is working.\n");
 }
 
 

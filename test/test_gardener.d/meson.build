@@ -13,6 +13,10 @@ test_gardener_exe = executable('test_gardener',
   ],
   include_directories: [src, src / 'utils'],
   dependencies: [ unity_dependency, cmock_dependency ],
+  link_args: [
+    # allow static functions testing
+    '-zmuldefs',
+  ]
 )
 
 test('test gardener.c', test_gardener_exe)

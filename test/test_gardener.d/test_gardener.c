@@ -12,7 +12,7 @@
 
 // App
 /* Include *.c instead of *.h to test static functions. */
-#include "gardener.h"
+#include "gardener.c"
 #include "mock_std_lib_utils.h"
 
 /*******************************************************************************
@@ -88,35 +88,34 @@ void test_water_plant(void) {
 /*******************************************************************************
  *    PRIVATE API TESTS
  ******************************************************************************/
-/* void test_is_watering_required_true_false(void) { */
-/*   bool received; */
-/*   unsigned long now_mock = last_watering_date + watering_period; */
+void test_is_watering_required_true_false(void) {
+  bool received;
+  unsigned long now_mock = last_watering_date + watering_period;
 
-/*   // */
-/*   /\* Test case #0 *\/ */
-/*   received = is_watering_required(p, now_mock); */
+  //
+  /* Test case #0 */
+  received = is_watering_required(p, now_mock);
 
-/*   TEST_ASSERT_FALSE(received); */
+  TEST_ASSERT_FALSE(received);
 
-/*   // */
-/*   /\* Test case #1 *\/ */
-/*   received = is_watering_required(p, now_mock - 1); */
+  //
+  /* Test case #1 */
+  received = is_watering_required(p, now_mock - 1);
 
-/*   TEST_ASSERT_FALSE(received); */
+  TEST_ASSERT_FALSE(received);
 
-/*   // */
-/*   /\* Test case #2 *\/ */
-/*   received = is_watering_required(p, now_mock + 1); */
+  //
+  /* Test case #2 */
+  received = is_watering_required(p, now_mock + 1);
 
-/*   TEST_ASSERT_TRUE(received); */
-/* } */
+  TEST_ASSERT_TRUE(received);
+}
 
-/* void test_is_watering_required_overflow(void) { */
-/*   bool received; */
+void test_is_watering_required_overflow(void) {
+  // App exits if overflow
+  p->watering_period = ULONG_MAX;
+  p->last_watering_date = 1;
 
-/*   p->watering_period = ULONG_MAX; */
-/*   p->last_watering_date = 1; */
-
-/*   app_exit_IgnoreAndReturn(2); */
-/*   is_watering_required(p, 0); */
-/* } */
+  app_exit_IgnoreAndReturn(2);
+  is_watering_required(p, 0);
+}

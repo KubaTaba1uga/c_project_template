@@ -4,7 +4,6 @@
 #include <unistd.h>
 
 #include "gardener.h"
-/* #include "main.h" */
 
 plant my_plants_[] = {{.species = "Renanthera monachica",
                    .water_amount = 0.2,
@@ -25,18 +24,15 @@ int main(void)
   size_t i, plants_amount = sizeof(my_plants_) / sizeof(plant);
   bool was_watered;
 
-  while (true) {
-    for (i = 0; i < plants_amount; i++) {
-      was_watered = water_plant(&my_plants_[i]);
 
-      if (was_watered)
-        printf("%s was watered.\n", my_plants_[i].species);
-      else
-        printf("%s wasn't watered.\n", my_plants_[i].species);
-    }
+  for (i = 0; i < plants_amount; i++) {
+    was_watered = water_plant(&my_plants_[i]);
 
-    sleep(3);
-  }
+    if (was_watered)
+      printf("%s was watered.\n", my_plants_[i].species);
+    else
+      printf("%s wasn't watered.\n", my_plants_[i].species);
+   }
 
   return 0;
 }
