@@ -1,7 +1,7 @@
 // Let's imagine an app for managing plant's watering.
 
 /*******************************************************************************
- *    INCLUDED FILES
+ *    INCLUDES
  ******************************************************************************/
 #include <limits.h>
 #include <stdio.h>
@@ -9,6 +9,11 @@
 #include <string.h>
 
 #include "gardener.h"
+
+/*******************************************************************************
+ *    PRIVATE API DECLARATIONS
+ ******************************************************************************/
+static bool is_watering_required(plant *plant_, unsigned long time);
 
 /*******************************************************************************
  *    PUBLIC API
@@ -46,7 +51,7 @@ bool water_plant(plant *plant_) {
 /*******************************************************************************
  *    PRIVATE API
  ******************************************************************************/
-bool is_watering_required(plant *plant_, unsigned long time) {
+static bool is_watering_required(plant *plant_, unsigned long time) {
   // Detect overflow
   if (plant_->last_watering_date > (ULONG_MAX - plant_->watering_period) ||
       (plant_->watering_period > (ULONG_MAX - plant_->last_watering_date)))

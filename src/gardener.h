@@ -41,6 +41,5 @@ bool water_plant(plant *plant_);
 /*******************************************************************************
  *    PRIVATE API
  ******************************************************************************/
-static bool is_watering_required(plant *plant_, unsigned long time);
 
 #endif
