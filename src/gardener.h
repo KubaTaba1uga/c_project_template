@@ -1,14 +1,46 @@
-#include <stddef.h>
+#ifndef _gardener_h
+#define _gardener_h
 
-enum jobs { Sowing, Cutting, Watering };
+/*******************************************************************************
+ *    INCLUDED FILES
+ ******************************************************************************/
+// Standard library
+#include <stdbool.h>
 
-struct gardener {
-  int id;
-  char surname[255];
-  char firstname[255];
-  enum jobs task;
-};
+// App
+#include "utils/std_lib_utils.h"
 
-struct gardener *create_gardeners(size_t amount);
-struct gardener *cut(size_t gardeners_no,
-                     struct gardener gardeners[gardeners_no]);
+/*******************************************************************************
+ *    DATA STRUCTURES
+ ******************************************************************************/
+typedef struct plant {
+  char species[1024];
+
+  // In liters
+  float water_amount;
+
+  // In seconds since epoch
+  unsigned long start_date;
+
+  // In seconds since epoch
+  unsigned long last_watering_date;
+
+  // In seconds since epoch
+  unsigned long watering_period;
+
+} plant;
+
+/*******************************************************************************
+ *    PUBLIC API
+ ******************************************************************************/
+plant *create_plant(char *species, float water_amount, unsigned long start_date,
+                    unsigned long last_watering_date,
+                    unsigned long watering_period);
+bool water_plant(plant *plant_);
+
+/*******************************************************************************
+ *    PRIVATE API
+ ******************************************************************************/
+static bool is_watering_required(plant *plant_, unsigned long time);
+
+#endif

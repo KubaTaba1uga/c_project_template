@@ -1,0 +1,15 @@
+# Template for new C projects
+
+project('c_project_template' ,
+        language: 'c',
+         version: 0.0.1,
+	 meson_version: '>=1.0.1',
+	 default_options: [
+            'werror=true',
+            'c_std=c11'
+         ]
+)
+
+subdir('src')
+
+main = executable('main', sources)
