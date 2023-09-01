@@ -33,7 +33,8 @@ case "$OS" in
        	# Install meson
 	sudo apt-get update
 	sudo apt-get install -y meson
-	
+ 
+	;;
     *)
 	echoerr "$OS not supported"
 	exit 1
