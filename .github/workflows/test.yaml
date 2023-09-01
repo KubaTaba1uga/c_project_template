@@ -14,4 +14,4 @@ jobs:
       - name: Setup build dir
         run: meson setup $BUILD_DIR
       - name: Run tests
-        run: meson test -C $BUILD_DIR
+        run: meson test -v -C $BUILD_DIR
