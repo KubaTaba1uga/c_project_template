@@ -5,13 +5,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Copy Repo
-      - uses: actions/checkout@v3
-      # Install meson
-      - run: ./scripts/install_meson.sh
-      # Setup build
-      - run: meson setup build
-      # Compile build
-      - run: meson compile main -C build
-      # Confirm main exit code is 0
-      - run: ./build/main
+      - name: Copy Repo
+        uses: actions/checkout@v3
+      - name: Install meson
+        run: ./scripts/install_meson.sh
+      - name: Setup build
+        run: meson setup build
+      - name: Compile build
+        run: meson compile main -C build
+      - name: Confirm main exit code is 0
+        run: ./build/main
