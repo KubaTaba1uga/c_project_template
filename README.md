@@ -84,23 +84,15 @@ meson test -C build
 New tests units should be grouped by directories.
 To understand more look on ./test directory.
 
+Hierarchial build is very favoured by Meson, splitting test unit's into directory allow keeping meson.buils short and simple.
+
 ## Authors
 
   - **Jakub Buczyński** - *C Project Template* -
     [KubaTaba1uga](https://github.com/KubaTaba1uga)
 
-See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
-who participated in this project.
-
 ## License
 
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
+This project is licensed under the [MIT](LICENSE.md)
+MIT License - see the [LICENSE.md](LICENSE.md) file for
 details
-
-## Acknowledgments
-
-  - Hat tip to anyone whose code is used
-  - Inspiration
-  - etc
