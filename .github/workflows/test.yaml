@@ -13,7 +13,5 @@ jobs:
         run: ./scripts/install_meson.sh
       - name: Setup build dir
         run: meson setup $BUILD_DIR
-      - name: Compile build dir
-        run: meson compile -C $BUILD_DIR
       - name: Run tests
         run: meson test -C $BUILD_DIR
