@@ -13,4 +13,5 @@ jobs:
       # Setup build
       - run: meson setup build
       # Compile build
-      - run: meson compile -C build
+      - run: meson compile main -C build
+      # Confirm main exit code is 0
