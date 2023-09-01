@@ -2,10 +2,11 @@
 
 Template for new c projects. Includes build system, test, mocking, readme, license. 
 
-Build System: Meson <br>
-Tests: Unity <br>
-Mocks: CMock <br>
-License: MIT <br>
+1. [Getting Started](#Getting-Started)
+2. [Perequesites](#Perequesites)
+3. [Installing](#Installing)
+
+
 
 ## Getting Started
 
