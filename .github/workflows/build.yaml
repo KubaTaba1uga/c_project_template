@@ -14,3 +14,4 @@ jobs:
       # Compile build
       - run: meson compile main -C build
       # Confirm main exit code is 0
+      - run: ./build/main
