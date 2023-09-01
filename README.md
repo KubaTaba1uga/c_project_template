@@ -3,8 +3,9 @@
 Template for new c projects. Includes build system, test, mocking, readme, license. 
 
 1. [Getting Started](#Getting-Started)
-2. [Perequesites](#Perequesites)
-3. [Installing](#Installing)
+2. [Prerequisites](#Prerequisites)
+3. [Building](#Building)
+3. [Tests](#Tests)
 
 
 
