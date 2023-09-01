@@ -1,4 +1,4 @@
-name: Tests
+name: Unit Tests
 run-name: ${{ github.actor }} is testing the app for ${{ github.ref }}
 on: [push]
 env:
