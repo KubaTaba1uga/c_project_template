@@ -9,7 +9,7 @@ test_cmock_exe = executable('test_cmock',
    cmock_test_src,
    cmock_gen_runner.process(test_cmock_name)                   
   ],
-  dependencies: [ unity_dependency ],
+  dependencies: [unity_dependency],
 )
 
-test('test cmock installation', test_gardener_exe)
+test('test cmock installation', test_gardener_exe, priority: 999)
