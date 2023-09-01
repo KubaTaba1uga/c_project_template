@@ -10,7 +10,7 @@ jobs:
       - name: Install meson
         run: ./scripts/install_meson.sh
       - name: Setup build
-        run: meson setup build
+        run: meson setup build main
       - name: Compile build
         run: meson compile main -C build
       - name: Confirm main exit code is 0
