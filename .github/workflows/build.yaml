@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v3
       # Install meson
       - run: sudo apt install curl -y
-      - run: curl -s <em>https://raw.githubusercontent.com/mesonbuild/meson/master/ci/ciimage/ubuntu-rolling/install.sh</em> | sudo bash
+      - run: curl -s https://raw.githubusercontent.com/mesonbuild/meson/master/ci/ciimage/ubuntu-rolling/install.sh | sudo bash
       # Setup build
       - run: meson setup build
       # Compile build
