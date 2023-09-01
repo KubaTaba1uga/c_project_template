@@ -1,5 +1,5 @@
-name: Build
-run-name: ${{ github.actor }} is building app for ${{ github.ref }}
+name: Tests
+run-name: ${{ github.actor }} is testing the app for ${{ github.ref }}
 on: [push]
 jobs:
   build:
@@ -13,5 +13,5 @@ jobs:
         run: meson setup build
       - name: Compile build
         run: meson compile main -C build
-      - name: Confirm main exit code is 0
-        run: ./build/main
+      - name: Run tests
+        run: meson test -C build
