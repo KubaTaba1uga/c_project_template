@@ -7,5 +7,9 @@ jobs:
     steps:
       # Copy Repo
       - uses: actions/checkout@v3
-      - run: ./scripts/install_ruby.sh
+      # Install perequesites
       - run: ./scripts/install_meson.sh
+      # Setup build
+      - run: meson setup build
+      # Compile build
+      - run: meson compile -C build
