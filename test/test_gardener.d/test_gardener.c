@@ -116,6 +116,7 @@ void test_is_watering_required_overflow(void) {
   p->watering_period = ULONG_MAX;
   p->last_watering_date = 1;
 
-  app_exit_IgnoreAndReturn(2);
+  /* Make sure exit was called */
+  app_exit_ExpectAndReturn(2, 999);
   is_watering_required(p, 0);
 }
