@@ -1,17 +1,19 @@
 name: Tests
 run-name: ${{ github.actor }} is testing the app for ${{ github.ref }}
 on: [push]
+env:
+  BUILD_DIR: build
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Copy Repo
+      - name: Copy Project
         uses: actions/checkout@v3
       - name: Install meson
         run: ./scripts/install_meson.sh
-      - name: Setup build
-        run: meson setup build
-      - name: Compile build
-        run: meson compile main -C build
+      - name: Setup build dir
+        run: meson setup $BUILD_DIR
+      - name: Compile build dir
+        run: meson compile main -C $BUILD_DIR
       - name: Run tests
-        run: meson test -C build
+        run: meson test -C $BUILD_DIR
