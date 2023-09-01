@@ -55,13 +55,15 @@ Ruby is used by CMock.
 
 ## Building
 
-Debian 12 is only supported OS in installation scripts, if that's not the one You're using check out Perequesites to install them manually.   
 
-Install perequesites
+Install perequesites by scripts
 ```
 ./scripts/install_ruby.sh
 ./scripts/install_meson.sh
 ```
+
+If installing perequesites by scripts has failed, You need to install them manually.
+
 
 Configure build for app and tests
 ```
