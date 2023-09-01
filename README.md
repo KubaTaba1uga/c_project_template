@@ -85,7 +85,7 @@ meson test -C build
 New tests units should be grouped by directories.
 To understand more look on ./test directory.
 
-Hierarchial build is very favoured by Meson, splitting test unit's into seperate directories allow keeping meson.buils short and simple.
+Hierarchial build is very favoured by Meson, splitting test unit's into seperate directories allow keeping meson.builds short and simple.
 
 ## Authors
 
