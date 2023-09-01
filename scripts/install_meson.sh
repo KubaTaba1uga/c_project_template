@@ -30,10 +30,10 @@ case "$OS" in
 	
 	;;
     *"Ubuntu 22"*)
-       	# Install meson
-	sudo apt-get update
-	sudo apt-get install -y meson
- 
+	# Install meson
+        sudo apt install python3-pip ninja-build -y
+        sudo pip3 install meson
+
 	;;
     *)
 	echoerr "$OS not supported"
