@@ -1,4 +1,4 @@
-1#!/bin/bash
+#!/bin/bash
 OS=$(hostnamectl | grep "Operating System")
 
 

@@ -29,6 +29,12 @@ case "$OS" in
 	sudo apt-get install -y meson
 	
 	;;
+    *"Ubuntu 22"*)
+	# Install meson
+        sudo apt install python3-pip ninja-build -y
+        sudo pip3 install meson
+
+	;;
     *)
 	echoerr "$OS not supported"
 	exit 1
