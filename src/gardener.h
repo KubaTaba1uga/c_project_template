@@ -38,8 +38,4 @@ plant *create_plant(char *species, float water_amount, unsigned long start_date,
                     unsigned long watering_period);
 bool water_plant(plant *plant_);
 
-/*******************************************************************************
- *    PRIVATE API
- ******************************************************************************/
-
 #endif
