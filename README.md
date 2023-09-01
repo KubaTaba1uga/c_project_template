@@ -1,13 +1,14 @@
 # C Project Template
 
-Template for new c projects. Includes build system, test, mocking, readme, license. 
+Template for new c projects. Includes build system, test, mocking, readme, license, pipelines. 
 
 1. [Getting Started](#Getting-Started)
 2. [Prerequisites](#Prerequisites)
 3. [Building](#Building)
 4. [Tests](#Tests)
-5. [Authors](#Authors)
-6. [License](#License)
+5. [Pipelines](#Pipelines)
+6. [Authors](#Authors)
+7. [License](#License)
 
 
 
@@ -88,6 +89,14 @@ New tests units should be grouped by directories.
 To understand more look on ./test directory.
 
 Hierarchial build is very favoured by Meson, splitting test unit's into seperate directories allow keeping meson.builds short and simple.
+
+## Pipelines
+
+Two pipelines are configured. <br>
+unit-tests.yaml makes sure that all unit tests passed. <br>
+merge-gatekeeper.yaml makes sure that all pipelines ran successfully before merging pull request.
+
+
 
 ## Authors
 
