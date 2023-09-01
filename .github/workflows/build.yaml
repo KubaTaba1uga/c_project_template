@@ -8,9 +8,7 @@ jobs:
       # Copy Repo
       - uses: actions/checkout@v3
       # Install meson
-      - run: sudo apt install git -y
-      - run: git clone https://github.com/mesonbuild/meson.git --depth 1
-      - run: ./meson/ci/ciimage/ubuntu-rolling/install.sh
+      - run: ./scripts/install_meson.sh
       # Setup build
       - run: meson setup build
       # Compile build
