@@ -48,10 +48,10 @@ I recommend installing perequesitest and confirming that all tests are passing b
 Project's name or version can be changed in ./meson.build file.
 
 ## Prerequisites
-
-Requirements for the software and other tools to build, test and push 
 - [Meson](https://mesonbuild.com/)
 - [Ruby](https://www.ruby-lang.org/en/)
+
+Ruby is used by CMock.
 
 ## Building
 
