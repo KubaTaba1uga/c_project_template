@@ -44,14 +44,14 @@ I recommend installing perequesitest and confirming that all tests are passing b
 
 Project's name or version can be changed in ./meson.build file.
 
-### Prerequisites
+## Prerequisites
 
 Requirements for the software and other tools to build, test and push 
 - [Meson](https://mesonbuild.com/)
 - [Unity](https://github.com/ThrowTheSwitch/Unity)
 - [Cmock](https://github.com/ThrowTheSwitch/CMock)
 
-### Installing
+## Building
 
 Debian 12 is only supported OS in installation scripts, if that's not the one You're using check out Perequesites to install them manually.   
 
@@ -61,7 +61,7 @@ Install perequesites
 ./scripts/install_meson.sh
 ```
 
-Configure build foe app and tests
+Configure build for app and tests
 ```
 meson setup build
 ```
@@ -71,51 +71,22 @@ Compile build config
 meson compile -C build
 ```
 
-## Running the tests
+## Tests
 
 Run all tests
 ```
 meson test -C build
 ```
 
-### Sample Tests
-
-Explain what these tests test and why
-
-    Give an example
-
 ### Style test
 
-Checks if the best practices and the right coding style has been used.
-
-    Give an example
-
-## Deployment
-
-Add additional notes to deploy this on a live system
-
-## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
-of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [Semantic Versioning](http://semver.org/) for versioning. For the versions
-available, see the [tags on this
-repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
+New tests units should be grouped by directories.
+To understand more look on ./test directory.
 
 ## Authors
 
-  - **Billie Thompson** - *Provided README Template* -
-    [PurpleBooth](https://github.com/PurpleBooth)
+  - **Jakub Buczyński** - *C Project Template* -
+    [KubaTaba1uga](https://github.com/KubaTaba1uga)
 
 See also the list of
 [contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
