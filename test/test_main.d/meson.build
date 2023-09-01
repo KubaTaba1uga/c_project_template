@@ -20,4 +20,4 @@ test_main_exe = executable('test_main',
   ]
 )
 
-test('test main.c', test_main_exe)
+test('test_main', test_main_exe)

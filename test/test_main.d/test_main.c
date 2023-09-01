@@ -10,8 +10,9 @@ void tearDown(void) {
 
 
 void test_main_(void) {
-  main__();
-  TEST_PASS_MESSAGE("main is working.\n");
+  int result = main__();
+  TEST_ASSERT_EQUAL(result, 0);
+  TEST_PASS_MESSAGE("main is working.");
 }
 
 

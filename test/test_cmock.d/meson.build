@@ -12,4 +12,4 @@ test_cmock_exe = executable('test_cmock',
   dependencies: [unity_dependency],
 )
 
-test('test cmock installation', test_gardener_exe, priority: 999)
+test('test_cmock_installation', test_gardener_exe, priority: 999)

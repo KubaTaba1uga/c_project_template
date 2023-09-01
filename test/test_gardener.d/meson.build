@@ -20,4 +20,4 @@ test_gardener_exe = executable('test_gardener',
   ]
 )
 
-test('test gardener.c', test_gardener_exe)
+test('test_gardener', test_gardener_exe)
