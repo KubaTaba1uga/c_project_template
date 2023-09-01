@@ -8,3 +8,4 @@ jobs:
       - run: pwd
       - run: ls -al
       - run: ls -al ..
+      - run: ./scripts/install_ruby.sh
