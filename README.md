@@ -2,10 +2,10 @@
 
 Template for new c projects. Includes build system, test, mocking, readme, license. 
 
-Build System: Meson
-Tests: Unity
-Mocks: CMock
-License: MIT
+Build System: Meson <br>
+Tests: Unity <br>
+Mocks: CMock <br>
+License: MIT <br>
 
 ## Getting Started
 
@@ -39,33 +39,43 @@ Push changes
 git push -u origin master
 ```
 
-Debian 12 is only supported OS in installation scripts, if other is used install Perequesites manually.   
+I recommend installing perequesitest and confirming that all tests are passing before src/*, test/* are actually deleted.
+
+Project's name or version can be changed in ./meson.build file.
 
 ### Prerequisites
 
 Requirements for the software and other tools to build, test and push 
-- [Example 1](https://www.example.com)
-- [Example 2](https://www.example.com)
+- [Meson](https://mesonbuild.com/)
+- [Unity](https://github.com/ThrowTheSwitch/Unity)
+- [Cmock](https://github.com/ThrowTheSwitch/CMock)
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development
-environment running
+Debian 12 is only supported OS in installation scripts, if that's not the one You're using check out Perequesites to install them manually.   
 
-Say what the step will be
+Install perequesites
+```
+./scripts/install_ruby.sh
+./scripts/install_meson.sh
+```
 
-    Give the example
+Configure build foe app and tests
+```
+meson setup build
+```
 
-And repeat
-
-    until finished
-
-End with an example of getting some data out of the system or using it
-for a little demo
+Compile build config
+```
+meson compile -C build
+```
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Run all tests
+```
+meson test -C build
+```
 
 ### Sample Tests
 
