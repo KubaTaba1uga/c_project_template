@@ -5,4 +5,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: pwd
       - run: ls -al
+      - run: ls -al ..
