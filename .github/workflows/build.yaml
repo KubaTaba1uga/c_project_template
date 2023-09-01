@@ -7,9 +7,9 @@ jobs:
     steps:
       # Copy Repo
       - uses: actions/checkout@v3
-      # Install perequesites
-      - run: sudo apt install python3-pip ninja-build -y
-      - run: sudo pip3 install meson
+      # Install meson
+      - run: sudo apt install curl -y
+      - run: curl -s <em>https://raw.githubusercontent.com/mesonbuild/meson/master/ci/ciimage/ubuntu-rolling/install.sh</em> | sudo bash
       # Setup build
       - run: meson setup build
       # Compile build
