@@ -1,21 +1,64 @@
-// Manage gardeners in the mansion
+// Let's imagine an app for managing plant's watering.
 
-#include <stddef.h>
+/*******************************************************************************
+ *    INCLUDES
+ ******************************************************************************/
+#include <limits.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "gardener.h"
 
-struct gardener *create_gardeners(size_t amount) {
-  return malloc(sizeof(struct gardener) * amount);
+/*******************************************************************************
+ *    PRIVATE API DECLARATIONS
+ ******************************************************************************/
+static bool is_watering_required(plant *plant_, unsigned long time);
+
+/*******************************************************************************
+ *    PUBLIC API
+ ******************************************************************************/
+plant *create_plant(char *species, float water_amount, unsigned long start_date,
+                    unsigned long last_watering_date,
+                    unsigned long watering_period) {
+
+  plant *p = app_malloc(sizeof(plant));
+  if (!p)
+    return NULL;
+
+  strcpy(p->species, species);
+  p->water_amount = water_amount;
+  p->last_watering_date = last_watering_date;
+  p->watering_period = watering_period;
+  p->start_date = start_date;
+
+  return p;
 }
 
-struct gardener *cut(size_t gardeners_no,
-                     struct gardener gardeners[gardeners_no]) {
-  size_t i;
+bool water_plant(plant *plant_) {
+  // If watering done return `true`, otherwise `false`.
 
-  for (i = 0; i < gardeners_no; i++) {
-    gardeners[i].task = Cutting;
-  }
+  unsigned long now = get_current_time();
 
-  return gardeners;
+  if (!is_watering_required(plant_, now))
+    return false;
+
+  plant_->last_watering_date = now;
+
+  return true;
+}
+
+/*******************************************************************************
+ *    PRIVATE API
+ ******************************************************************************/
+static bool is_watering_required(plant *plant_, unsigned long time) {
+  // Detect overflow
+  if (plant_->last_watering_date > (ULONG_MAX - plant_->watering_period) ||
+      (plant_->watering_period > (ULONG_MAX - plant_->last_watering_date)))
+    app_exit(2);
+
+  unsigned long new_watering_period =
+      plant_->last_watering_date + plant_->watering_period;
+
+  return time > new_watering_period;
 }
