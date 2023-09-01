@@ -5,7 +5,7 @@
 # ******************************************************************************
 project('c_project_template', 'c',
          version: '0.0.1',
-	 meson_version: '>=0.61.2',
+	 meson_version: '>=1.0.1',
 	 default_options: [
             'werror=true',
             'c_std=c11'
