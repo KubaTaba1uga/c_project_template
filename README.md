@@ -51,8 +51,7 @@ Project's name or version can be changed in ./meson.build file.
 
 Requirements for the software and other tools to build, test and push 
 - [Meson](https://mesonbuild.com/)
-- [Unity](https://github.com/ThrowTheSwitch/Unity)
-- [Cmock](https://github.com/ThrowTheSwitch/CMock)
+- [Ruby](https://www.ruby-lang.org/en/)
 
 ## Building
 
