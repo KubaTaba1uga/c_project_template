@@ -16,17 +16,17 @@ Template for new c projects. Includes build system, test, mocking, readme, licen
 
 Clone project
 ```
-git clone https://github.com/KubaTaba1uga/c_project_template.git <new project name>
+git clone https://github.com/KubaTaba1uga/c_project_template.git
 ```
 
 Delete template git files
 ```
-rm -rf <new project name>/.git
+rm -rf c_project_template/.git
 ```
 
 Initiate new git files
 ```
-cd <new project name>
+cd c_project_template
 git init
 ```
 
