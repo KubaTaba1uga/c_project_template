@@ -1,5 +1,4 @@
 # Template for new C projects
-
 # ******************************************************************************
 # *    App
 # ******************************************************************************
@@ -12,9 +11,21 @@ project('c_project_template', 'c',
          ]
 )
 
+
+
 subdir('src')
 
-main = executable('main', sources)
+
+# ******************************************************************************
+# *    Logging
+# ******************************************************************************
+cmake = import('cmake')
+
+logging_proj = cmake.subproject('stumpless')
+logging_dep = logging_proj.dependency('stumpless')
+
+
+main = executable('main', sources, dependencies: [logging_dep])
 
 # ******************************************************************************
 # *    Tests
