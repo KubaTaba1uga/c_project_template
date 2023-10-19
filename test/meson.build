@@ -5,8 +5,6 @@ cmock_dependency = cmock_subproject.get_variable('cmock_dep')
 
 scripts = join_paths('..', 'scripts')
 
-mock_script = find_program(scripts / 'create_mock.rb')
-
 cmock_gen_runner = generator(
   find_program(scripts / 'create_runner.rb'),
   output: '@BASENAME@_Runner.c',
