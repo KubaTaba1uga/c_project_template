@@ -34,13 +34,16 @@ int main(void)
   size_t i, plants_amount = sizeof(my_plants_) / sizeof(plant);
   bool was_watered;
 
+  // init logging
+  init_targets();
+
   for (i = 0; i < plants_amount; i++) {
     was_watered = water_plant(&my_plants_[i]);
 
     if (was_watered)
-      log_info("%s was watered.\n", my_plants_[i].species);
+      log_info("main", "%s was watered.\n", my_plants_[i].species);
     else
-      log_info("%s wasn't watered.\n", my_plants_[i].species);
+      log_info("main", "%s wasn't watered.\n", my_plants_[i].species);
   }
 
   return 0;
