@@ -13,7 +13,7 @@ test_gardener_exe = executable('test_gardener',
    cmock_gen_mock.process(utils / 'std_lib_utils.h')        
   ],
   include_directories: [src, utils],
-  dependencies: [unity_dependency, cmock_dependency],
+  dependencies: test_dependencies,
   link_args: [
     # allow static functions testing
     '-zmuldefs',

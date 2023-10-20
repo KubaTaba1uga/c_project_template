@@ -4,7 +4,7 @@ utils = join_paths(src, 'utils')
 
 test_main_name = 'test_main.c'
 
-test_main_src = files([test_main_name, src / 'main.c', src / 'gardener.c', utils / 'std_lib_utils.c'])
+test_main_src = files([test_main_name, src / 'main.c', src / 'gardener.c', utils / 'std_lib_utils.c',  utils / 'logging_utils.c'])
 
 test_main_exe = executable('test_main',
   sources: [
@@ -12,7 +12,7 @@ test_main_exe = executable('test_main',
     cmock_gen_runner.process(test_main_name),
   ],
   include_directories: [src, utils],
-  dependencies: [unity_dependency, cmock_dependency],
+  dependencies: test_dependencies,
   c_args:['-DTEST'],
   link_args: [
     # allow static functions testing
