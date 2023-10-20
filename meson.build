@@ -24,8 +24,9 @@ opt_var = cmake.subproject_options()
 # by default stumpless uses c11, which makes all implicit declaration to gnu library
 #  compile errors. Overriding c11 to gnu11 fixes the errors.
 opt_var.set_override_option('c_std', 'gnu11')
+opt_var.set_override_option('werror', 'false')
 
-logging_proj = cmake.subproject('stumpless')
+logging_proj = cmake.subproject('stumpless', options: opt_var)
 logging_dep = logging_proj.dependency('stumpless')
 
 
