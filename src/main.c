@@ -41,9 +41,9 @@ int main(void)
     was_watered = water_plant(&my_plants_[i]);
 
     if (was_watered)
-      log_info("main", "%s was watered.\n", my_plants_[i].species);
+      log_info("main", "%s was watered.", my_plants_[i].species);
     else
-      log_info("main", "%s wasn't watered.\n", my_plants_[i].species);
+      log_info("main", "%s wasn't watered.", my_plants_[i].species);
   }
 
   return 0;
