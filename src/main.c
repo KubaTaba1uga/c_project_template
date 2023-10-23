@@ -35,7 +35,7 @@ int main(void)
   bool was_watered;
 
   // init logging
-  init_targets();
+  init_loggers();
 
   for (i = 0; i < plants_amount; i++) {
     was_watered = water_plant(&my_plants_[i]);

@@ -1,5 +1,5 @@
 sources = files(
-   'main.c',
+   'main.c', 'config.h',
    'gardener.c', 'gardener.h',
 )
 

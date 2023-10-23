@@ -1,30 +1,37 @@
-#include "stumpless/target.h"
 #include <stddef.h>
 
 #include <stumpless.h>
 
-struct stumpless_target *targets[] = {NULL};
-size_t targets_no = sizeof(targets) / sizeof(struct stumpless_target *);
+#include "../config.h"
+#include "stumpless/severity.h"
 
-void init_targets(void) {
-  targets[0] = stumpless_open_stdout_target("console logger");
+struct stumpless_target *loggers[] = {NULL};
+size_t loggers_no = sizeof(loggers) / sizeof(struct stumpless_target *);
+
+void init_loggers(void) {
+  loggers[0] = stumpless_open_stdout_target("console logger");
 }
 
-void destroy_targets(void) {
+void destroy_loggers(void) {
   size_t i;
 
-  for (i = 0; i < targets_no; i++) {
-    stumpless_close_target(targets[i]);
+  for (i = 0; i < loggers_no; i++) {
+    stumpless_close_target(loggers[i]);
   }
 
   stumpless_free_all();
 }
 
-void _log_info(char *msg, char *msg_id);
+inline void create_log_entry(char *msg, char *msg_id,
+                             // Stumpless data
+                             struct stumpless_entry **entry,
+                             enum stumpless_severity severity);
+inline void log_msg(char *msg, char *msg_id, enum stumpless_severity severity);
+inline void emmit_log_entry(struct stumpless_entry *entry);
 
 void log_info(char *msg_id, char *fmt, ...) {
-  char local_log_entry[255]; // this should really be sized appropriately
-                             // possibly in response to a call to vsnprintf()
+  char local_log_entry[255];
+
   va_list vl;
   va_start(vl, fmt);
 
@@ -32,16 +39,46 @@ void log_info(char *msg_id, char *fmt, ...) {
 
   va_end(vl);
 
-  _log_info(local_log_entry, msg_id);
+  log_msg(local_log_entry, msg_id, STUMPLESS_SEVERITY_INFO);
 }
 
-void _log_info(char *msg, char *msg_id) {
-  struct stumpless_entry *entry;
-  size_t i;
-  entry = stumpless_new_entry(STUMPLESS_FACILITY_USER, STUMPLESS_SEVERITY_INFO,
-                              "project-name", msg_id, msg);
+void log_msg(char *msg, char *msg_id, enum stumpless_severity severity) {
+  struct stumpless_entry *entry = NULL;
 
-  for (i = 0; i < targets_no; i++) {
-    stumpless_add_entry(targets[i], entry);
+  create_log_entry(msg, msg_id, &entry, severity);
+
+  if (!entry) {
+    // TO-DO return error
+  }
+
+  emmit_log_entry(entry);
+
+  if (!entry) {
+    // TO-DO return error if emmiting has failed
+  }
+}
+
+void create_log_entry(char *msg, char *msg_id,
+                      // Stumpless data
+                      struct stumpless_entry **entry,
+                      enum stumpless_severity severity) {
+  *entry = stumpless_new_entry(STUMPLESS_FACILITY_USER, severity,
+                               "project-name", msg_id, msg);
+  if (!*entry) {
+    // TO-DO return error
+  }
+}
+
+void emmit_log_entry(struct stumpless_entry *entry) {
+  int result;
+  size_t i;
+
+  for (i = 0; i < loggers_no; i++) {
+
+    result = stumpless_add_entry(loggers[i], entry);
+
+    if (result < 0) {
+      // TO-DO return error
+    }
   }
 }

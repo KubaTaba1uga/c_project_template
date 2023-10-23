@@ -4,6 +4,6 @@
 /*******************************************************************************
  *    PUBLIC API
  ******************************************************************************/
-void log_info(char *fmt, ...);
-void init_targets(void);
+void log_info(char *msg_id, char *fmt, ...);
+void init_loggers(void);
 #endif
