@@ -7,8 +7,8 @@ project('c_project_template', 'c',
 	 meson_version: '>=1.0.1',
 	 default_options: [
             'werror=true',
-            'c_std=c11'
-         ]
+            'c_std=c11',
+         ],
 )
 # ******************************************************************************
 # *    Logging
@@ -29,7 +29,11 @@ logging_dep = logging_proj.dependency('stumpless')
 # ******************************************************************************
 app_deps = [logging_dep]
 subdir('src')
+
+#add_project_arguments('-E', language:'c')
 main = executable('main', sources, dependencies: app_deps)
+
+
 
 # ******************************************************************************
 # *    Tests

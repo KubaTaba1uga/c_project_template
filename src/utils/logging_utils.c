@@ -1,13 +1,40 @@
+/*******************************************************************************
+ *    IMPORTS
+ ******************************************************************************/
+// C standard library
 #include <stddef.h>
 
+// Logging library
 #include <stumpless.h>
 
+// App's data
 #include "../config.h"
-#include "stumpless/severity.h"
 
+/*******************************************************************************
+ *    MACROS
+ ******************************************************************************/
+#define GET_VA_CHAR_ARGS(buffer, buffer_size)                                  \
+  va_list vl;                                                                  \
+  va_start(vl, fmt);                                                           \
+  vsnprintf(buffer, buffer_size, fmt, vl);                                     \
+  va_end(vl);
+
+/*******************************************************************************
+ *    PRIVATE DECLARATIONS
+ ******************************************************************************/
 struct stumpless_target *loggers[] = {NULL};
 size_t loggers_no = sizeof(loggers) / sizeof(struct stumpless_target *);
 
+inline void log_msg(char *msg, char *msg_id, enum stumpless_severity severity);
+inline void create_log_entry(char *msg, char *msg_id,
+                             // Stumpless data
+                             struct stumpless_entry **entry,
+                             enum stumpless_severity severity);
+inline void emmit_log_entry(struct stumpless_entry *entry);
+
+/*******************************************************************************
+ *    API
+ ******************************************************************************/
 void init_loggers(void) {
   loggers[0] = stumpless_open_stdout_target("console logger");
 }
@@ -22,22 +49,10 @@ void destroy_loggers(void) {
   stumpless_free_all();
 }
 
-inline void create_log_entry(char *msg, char *msg_id,
-                             // Stumpless data
-                             struct stumpless_entry **entry,
-                             enum stumpless_severity severity);
-inline void log_msg(char *msg, char *msg_id, enum stumpless_severity severity);
-inline void emmit_log_entry(struct stumpless_entry *entry);
-
 void log_info(char *msg_id, char *fmt, ...) {
   char local_log_entry[255];
 
-  va_list vl;
-  va_start(vl, fmt);
-
-  vsnprintf(local_log_entry, sizeof(local_log_entry), fmt, vl);
-
-  va_end(vl);
+  GET_VA_CHAR_ARGS(local_log_entry, sizeof(local_log_entry));
 
   log_msg(local_log_entry, msg_id, STUMPLESS_SEVERITY_INFO);
 }
@@ -62,8 +77,8 @@ void create_log_entry(char *msg, char *msg_id,
                       // Stumpless data
                       struct stumpless_entry **entry,
                       enum stumpless_severity severity) {
-  *entry = stumpless_new_entry(STUMPLESS_FACILITY_USER, severity,
-                               "project-name", msg_id, msg);
+  *entry = stumpless_new_entry(STUMPLESS_FACILITY_USER, severity, PROJECT_NAME,
+                               msg_id, msg);
   if (!*entry) {
     // TO-DO return error
   }
