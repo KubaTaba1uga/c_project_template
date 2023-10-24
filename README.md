@@ -17,25 +17,35 @@ Template for new c projects. Includes build system, test, mocking, logging, read
 ## Getting Started
 
 Clone project
-`git clone https://github.com/KubaTaba1uga/c_project_template.git
-`
+```
+git clone https://github.com/KubaTaba1uga/c_project_template.git
+```
+
 Delete template git files
-`rm -rf c_project_template/.git
-`
+```
+rm -rf c_project_template/.git
+```
+
 Initiate new git files
-`cd c_project_template
+```
+cd c_project_template
 git init
-`
+```
+
 Once you have initialized the repository, create a remote repository somewhere like GitHub.com.
 
 Add the remote URL to your local git repository
-`git remote add origin <URL>
-`
+```
+git remote add origin <URL>
+```
+
 Commit at least one file
 
 Push changes
-`git push -u origin master
-`
+```
+git push -u origin master
+```
+
 I recommend installing perequesitest and confirming that all tests are passing before src/*, test/* are actually deleted.
 
 Project's name or version can be changed in ./meson.build file.
@@ -50,23 +60,31 @@ Ruby is used by CMock.
 
 
 Install perequesites by scripts
-`./scripts/install_ruby.sh
+```
+./scripts/install_ruby.sh
 ./scripts/install_meson.sh
-`
+```
+
 If installing perequesites by scripts has failed, You need to install them manually.
 
 
 Configure build for app and tests
-`meson setup build
-`
+```
+meson setup build
+```
+
 Compile build config
-`meson compile -C build
-`
+```
+meson compile -C build
+```
+
 ## Tests
 
 Run all tests
-`meson test -C build
-`
+```
+meson test -C build
+```
+
 ### Style test
 
 New tests units should be grouped by directories.
@@ -92,5 +110,3 @@ merge-gatekeeper.yaml makes sure that all pipelines ran successfully before merg
 This project is licensed under the [MIT](LICENSE.md)
 License - see the [LICENSE.md](LICENSE.md) file for
 details
-
-
