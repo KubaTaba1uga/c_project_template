@@ -1,8 +1,8 @@
-name: linter
-on: [push, pull_request]
+name: Linter
+on: [pull_request]
 jobs:
-  formatting-check:
-    name: Format check
+  linter:
+    name: Check formatting
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
