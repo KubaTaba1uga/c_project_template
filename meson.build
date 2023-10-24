@@ -10,6 +10,7 @@ project('c_project_template', 'c',
             'c_std=c11',
          ],
 )
+
 # ******************************************************************************
 # *    Logging
 # ******************************************************************************
@@ -30,10 +31,7 @@ logging_dep = logging_proj.dependency('stumpless')
 app_deps = [logging_dep]
 subdir('src')
 
-#add_project_arguments('-E', language:'c')
 main = executable('main', sources, dependencies: app_deps)
-
-
 
 # ******************************************************************************
 # *    Tests
