@@ -46,5 +46,8 @@ int main(void)
       log_info("main", "%s wasn't watered.", my_plants_[i].species);
   }
 
+  // cleanup logging
+  destroy_loggers();
+
   return 0;
 }

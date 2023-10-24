@@ -5,11 +5,12 @@
 #include <stddef.h>
 
 // Logging library
+#include <stdlib.h>
 #include <stumpless.h>
 
 // App's data
 #include "../config.h"
-
+#include "../interfaces/std_lib_interface.h"
 /*******************************************************************************
  *    MACROS
  ******************************************************************************/
@@ -71,6 +72,8 @@ void log_msg(char *msg, char *msg_id, enum stumpless_severity severity) {
   if (!entry) {
     // TO-DO return error if emmiting has failed
   }
+
+  stumpless_destroy_entry_and_contents(entry);
 }
 
 void create_log_entry(char *msg, char *msg_id,

@@ -6,4 +6,5 @@
  ******************************************************************************/
 void log_info(char *msg_id, char *fmt, ...);
 void init_loggers(void);
+void destroy_loggers(void);
 #endif
