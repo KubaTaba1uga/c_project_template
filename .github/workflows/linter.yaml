@@ -5,6 +5,8 @@ jobs:
     name: Format check
     runs-on: ubuntu-latest
     steps:
+    - name: Install clang
+      run: apt-get install clang-format -y
     - uses: actions/checkout@v2
     - name: Run clang-format style check for C/C++ programs.
       uses: jidicula/clang-format-action@v4.2.0
