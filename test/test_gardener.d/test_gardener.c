@@ -13,8 +13,8 @@
 // App
 /* Include *.c instead of *.h to test static functions. */
 #include "gardener.c"
+#include "mock_std_lib_interface.h"
 #include "mock_std_lib_utils.h"
-
 /*******************************************************************************
  *    DATA
  ******************************************************************************/

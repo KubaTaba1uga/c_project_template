@@ -8,7 +8,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+// App
 #include "gardener.h"
+#include "interfaces/std_lib_interface.h"
+#include "utils/std_lib_utils.h"
 
 /*******************************************************************************
  *    PRIVATE API DECLARATIONS
