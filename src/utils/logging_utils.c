@@ -34,7 +34,7 @@ inline void create_log_entry(char *msg, char *msg_id,
 inline void emmit_log_entry(struct stumpless_entry *entry);
 
 /*******************************************************************************
- *    API
+ *    PUBLIC API
  ******************************************************************************/
 void init_loggers(void) {
   loggers[0] = stumpless_open_stdout_target("console logger");
@@ -58,6 +58,9 @@ void log_info(char *msg_id, char *fmt, ...) {
   log_msg(local_log_entry, msg_id, STUMPLESS_SEVERITY_INFO);
 }
 
+/*******************************************************************************
+ *    PRIVATE API
+ ******************************************************************************/
 void log_msg(char *msg, char *msg_id, enum stumpless_severity severity) {
   struct stumpless_entry *entry = NULL;
 
