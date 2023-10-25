@@ -1,8 +1,6 @@
 name: Build Project
 run-name: ${{ github.actor }} is building the app for ${{ github.ref }}
-on:
-  pull_request:
-    branches: '**'
+on: [workflow_call] 
 env:
   BUILD_DIR: build
 jobs:
