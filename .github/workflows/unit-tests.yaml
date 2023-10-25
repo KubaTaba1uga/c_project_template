@@ -13,7 +13,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v1.3.1
         with:
           ref: ${{ github.ref }}
-          check-name: 'Compile main'
+          check-name: 'Build Project'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
           running-workflow-name: 'Build Project'
