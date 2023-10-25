@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Copy Project
         uses: actions/checkout@v3
+      - name: Install valgrind
+        run: sudo apt-get install valgrind -y
       - name: Install meson
         run: ./scripts/install_meson.sh
       - name: Setup build dir
