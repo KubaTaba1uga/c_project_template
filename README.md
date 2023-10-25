@@ -66,8 +66,8 @@ Python is used by Meson.
 
 Install perequesites by scripts
 ```
-./scripts/install_ruby.sh
-./scripts/install_meson.sh
+bash scripts/install_ruby.sh
+bash scripts/install_meson.sh
 ```
 
 If installing perequesites by scripts has failed, You need to install them manually.
