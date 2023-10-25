@@ -15,7 +15,7 @@ jobs:
           ref: ${{ github.ref }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
-          running-workflow-name: 'Build Project'
+          running-workflow-name: 'Build'
       - name: Copy Project
         uses: actions/checkout@v3
       - name: Install valgrind
