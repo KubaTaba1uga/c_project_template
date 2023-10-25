@@ -1,4 +1,5 @@
 [![Unit Tests](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit-tests.yaml) 
+[![Unit Tests with Valgrind](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit_tests_with_valgrind.yaml/badge.svg)](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit_tests_with_valgrind.yaml)
 [![Linter](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/linter.yaml/badge.svg)](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/linter.yaml)
 
 # C Project Template
