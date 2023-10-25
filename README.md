@@ -10,7 +10,7 @@ Template for new c projects. Includes build system, testing, mocking, logging, r
 3. [Building](#Building)
 4. [Tests](#Tests)
 5. [Pipelines](#Pipelines)
-6. [Common tasks](#Common_tasks)
+6. [Common tasks](#Common-tasks)
 7. [Authors](#Authors)
 8. [License](#License)
 
