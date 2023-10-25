@@ -16,4 +16,4 @@ jobs:
       - name: Setup build dir
         run: ./scripts/setup_build.sh
       - name: Run tests
-        run: ./scripts/run_valgrind_test.sh
+        run: ./scripts/run_valgrind_tests.sh
