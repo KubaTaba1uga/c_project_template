@@ -1,17 +1,18 @@
-[![Unit Tests](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit-tests.yaml)
+[![Unit Tests](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit-tests.yaml/badge.svg)](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/unit-tests.yaml) 
+[![Linter](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/linter.yaml/badge.svg)](https://github.com/KubaTaba1uga/c_project_template/actions/workflows/linter.yaml)
 
 # C Project Template
 
-Template for new c projects. Includes build system, test, mocking, logging, readme, license, pipelines. 
+Template for new c projects. Includes build system, testing, mocking, logging, readme, license, pipelines. 
 
 1. [Getting Started](#Getting-Started)
 2. [Prerequisites](#Prerequisites)
 3. [Building](#Building)
 4. [Tests](#Tests)
 5. [Pipelines](#Pipelines)
-6. [Authors](#Authors)
-7. [License](#License)
-
+6. [Common tasks](#Common-tasks)
+7. [Authors](#Authors)
+8. [License](#License)
 
 
 ## Getting Started
@@ -50,14 +51,18 @@ I recommend installing perequesitest and confirming that all tests are passing b
 
 Project's name or version can be changed in ./meson.build file.
 
+
 ## Prerequisites
+
 - [Meson](https://mesonbuild.com/)
 - [Ruby](https://www.ruby-lang.org/en/)
+- [Python](https://www.python.org/)
 
 Ruby is used by CMock.
+Python is used by Meson.
+
 
 ## Building
-
 
 Install perequesites by scripts
 ```
@@ -68,15 +73,16 @@ Install perequesites by scripts
 If installing perequesites by scripts has failed, You need to install them manually.
 
 
-Configure build for app and tests
+Configure a build for an app and tests
 ```
 meson setup build
 ```
 
-Compile build config
+Compile a build
 ```
 meson compile -C build
 ```
+
 
 ## Tests
 
@@ -85,6 +91,7 @@ Run all tests
 meson test -C build
 ```
 
+
 ### Style test
 
 New tests units should be grouped by directories.
@@ -92,12 +99,41 @@ To understand more look on ./test directory.
 
 Hierarchial build is very favoured by Meson, splitting test unit's into seperate directories allow keeping meson.builds short and simple.
 
+
 ## Pipelines
 
-Two pipelines are configured. <br>
-unit-tests.yaml makes sure that all unit tests passed. <br>
+Three pipelines are configured. <br>
+unit-tests.yaml makes sure that all unit tests passed successfully. <br>
+linter.yaml makes sure that code is inline with clang-format file. <br>
 merge-gatekeeper.yaml makes sure that all pipelines ran successfully before merging pull request.
 
+
+## Common tasks
+
+Setting up a build
+```
+bash scripts/setup_build.sh
+```
+
+Compiling a build
+```
+bash scripts/compile_build.sh
+```
+
+Formatting a code
+```
+bash scripts/format_code.sh
+```
+
+Running tests
+```
+bash scripts/run_tests.sh
+```
+
+Running tests with valgrind
+```
+bash scripts/run_valgrind_tests.sh
+```
 
 
 ## Authors
