@@ -76,9 +76,14 @@ Configure build for app and tests
 meson setup build
 ```
 
-Compile build config
+Compile build
 ```
 meson compile -C build
+```
+
+Run main
+```
+./build/main
 ```
 
 ## Tests
