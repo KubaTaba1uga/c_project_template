@@ -1,5 +1,5 @@
 name: Unit Tests with Valgrind
-run-name: ${{ github.actor }} is testing the app for ${{ github.ref }}
+run-name: ${{ github.actor }} is testing with valgrind the app for ${{ github.ref }}
 on:
   pull_request:
     branches: '**'

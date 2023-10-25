@@ -104,10 +104,12 @@ Hierarchial build is very favoured by Meson, splitting test unit's into seperate
 
 ## Pipelines
 
-Three pipelines are configured. <br>
-unit-tests.yaml makes sure that all unit tests passed successfully. <br>
-linter.yaml makes sure that code is inline with clang-format file. <br>
-merge-gatekeeper.yaml makes sure that all pipelines ran successfully before merging pull request.
+Some pipelines are configured out of the box:
+- `build.yaml` compiles the project
+- `linter.yaml` makes sure code is inline with .clang-format
+- `unit-tests.yaml` runs unit tests
+- `unit-tests-with-valgrind.yaml` checks for memory leaks in tests
+- `merge-gatekeeper.yaml` makes sure that all pipelines ran successfully before merging pull request
 
 
 ## Common tasks
