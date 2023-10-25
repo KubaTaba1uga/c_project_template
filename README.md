@@ -8,9 +8,9 @@ Template for new c projects. Includes build system, testing, mocking, logging, r
 1. [Getting Started](#Getting-Started)
 2. [Prerequisites](#Prerequisites)
 3. [Building](#Building)
-4. [Common tasks](#Common_tasks)
-5. [Tests](#Tests)
-6. [Pipelines](#Pipelines)
+4. [Tests](#Tests)
+5. [Pipelines](#Pipelines)
+6. [Common tasks](#Common_tasks)
 7. [Authors](#Authors)
 8. [License](#License)
 
