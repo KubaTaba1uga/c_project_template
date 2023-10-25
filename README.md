@@ -54,8 +54,10 @@ Project's name or version can be changed in ./meson.build file.
 ## Prerequisites
 - [Meson](https://mesonbuild.com/)
 - [Ruby](https://www.ruby-lang.org/en/)
+- [Python](https://www.python.org/)
 
 Ruby is used by CMock.
+Python is used by Meson.
 
 ## Building
 
