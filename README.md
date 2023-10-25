@@ -3,7 +3,7 @@
 
 # C Project Template
 
-Template for new c projects. Includes build system, test, mocking, logging, readme, license, pipelines. 
+Template for new c projects. Includes build system, testing, mocking, logging, readme, license, pipelines. 
 
 1. [Getting Started](#Getting-Started)
 2. [Prerequisites](#Prerequisites)
