@@ -12,10 +12,11 @@ jobs:
       - name: Wait for build to succeed
         uses: lewagon/wait-on-check-action@v1.3.1
         with:
-          ref: main
-          check-name: build
+          ref: ${{ github.ref }}
+          check-name: 'Compile main'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
+          running-workflow-name: 'Build Project'
       - name: Copy Project
         uses: actions/checkout@v3
       - name: Install meson
