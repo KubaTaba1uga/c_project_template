@@ -3,9 +3,9 @@ cmock_subproject = subproject('cmock')
 unity_dependency = cmock_subproject.get_variable('unity_dep')
 cmock_dependency = cmock_subproject.get_variable('cmock_dep')
 
-scripts = join_paths('..', 'scripts')
+test_dependencies = [logging_dep, unity_dependency, cmock_dependency]
 
-mock_script = find_program(scripts / 'create_mock.rb')
+scripts = join_paths('..', 'scripts')
 
 cmock_gen_runner = generator(
   find_program(scripts / 'create_runner.rb'),

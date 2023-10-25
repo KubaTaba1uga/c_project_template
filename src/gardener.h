@@ -2,13 +2,10 @@
 #define _gardener_h
 
 /*******************************************************************************
- *    INCLUDED FILES
+ *    IMPORTS
  ******************************************************************************/
-// Standard library
+// C Standard library
 #include <stdbool.h>
-
-// App
-#include "utils/std_lib_utils.h"
 
 /*******************************************************************************
  *    DATA STRUCTURES

@@ -1,9 +1,10 @@
-#ifndef _std_lib_utils_h
-#define _std_lib_utils_h
+#ifndef _logging_utils_h
+#define _logging_utils_h
 
 /*******************************************************************************
  *    PUBLIC API
  ******************************************************************************/
-unsigned long get_current_time(void);
-
+void log_info(char *msg_id, char *fmt, ...);
+void init_loggers(void);
+void destroy_loggers(void);
 #endif

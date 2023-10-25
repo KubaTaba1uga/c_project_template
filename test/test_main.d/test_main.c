@@ -8,5 +8,3 @@ void test_main(void) {
   TEST_ASSERT_EQUAL(result, 0);
   TEST_PASS_MESSAGE("main is working.");
 }
-
-
